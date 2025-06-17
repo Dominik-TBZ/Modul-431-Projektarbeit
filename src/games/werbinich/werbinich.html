@@ -1,13 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wer bin ich?</title>
-    <link rel="stylesheet" href="werbinich.css"/>
+    <link rel="stylesheet" href="werbinich.css">
     <script src="werbinich.js" defer></script>
 </head>
 <body>
-    <h1>Wer bin ich?</h1>
+    <div class="game-container">
+        <h2>Wer bin ich?</h2>
+        
+        <!-- Auswahl für Spieler 1 und Spieler 2 -->
+        <div id="player-selection">
+            <div id="player1" class="player-selection">
+                <h3>Spieler 1</h3>
+                <div id="grid-container-player1" class="grid-container"></div>
+                <div id="selection-info-player1" style="display:none;">
+                    <p>Du hast <span id="selected-name-player1"></span> ausgewählt.</p>
+                </div>
+            </div>
+            <div id="player2" class="player-selection">
+                <h3>Spieler 2</h3>
+                <div id="grid-container-player2" class="grid-container"></div>
+                <div id="selection-info-player2" style="display:none;">
+                    <p>Du hast <span id="selected-name-player2"></span> ausgewählt.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
