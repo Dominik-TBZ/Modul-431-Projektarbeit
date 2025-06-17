@@ -1,76 +1,76 @@
-
-* {
+body {
+  font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f9;
-  color: #333;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  flex-direction: column;
+  background: url('./img/background.jpeg') no-repeat center center fixed;
+  background-size: cover;
 }
-
 
 header {
   text-align: center;
-  margin-bottom: 30px;
-}
-
-header h1 {
-  font-size: 2.5em;
   margin-bottom: 20px;
 }
 
-
-nav ul {
-  list-style-type: none;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+header h1 {
+  color:  white;
+  font-size: 5rem;
+  font-weight: bold;
 }
 
-nav ul li {
-  margin: 15px 0;
+
+.top-row {
+  display: grid;
+  grid-template-columns: repeat(3, 180px); 
+  gap: 130px;
+  justify-items: center;
+  margin-top: 20px;
+}
+
+
+.bottom-row {
+  display: grid;
+  grid-template-columns: repeat(2, 180px); 
+  gap: 130px;
+  justify-items: center;
+  margin-top: 20px;
+  
+  margin-left: auto;
+  margin-right: auto;
 }
 
 
 .link-box {
-  display: inline-block;
-  background-color: #4CAF50;
+  display: block;
+  background-color: #0D47A1; 
   color: white;
-  text-decoration: none;
-  padding: 20px 40px;
-  border-radius: 8px;
-  font-size: 1.5em;
-  width: 250px; 
+  padding: 40px;
   text-align: center;
-  transition: background-color 0.3s, transform 0.3s;
+  font-size: 2rem;
+  text-decoration: none;
+  border-radius: 10px;
+  width: 180px;
+  height: 180px;
+  transition: background-color 0.3s ease, transform 0.2s;
 }
 
 .link-box:hover {
-  background-color: #45a049;
+  background-color: #1976D2;
   transform: scale(1.05);
 }
 
-/* Footer */
 footer {
-  background-color: #333;
-  color: white;
-  text-align: center;
-  padding: 10px;
-  width: 100%;
   position: absolute;
-  bottom: 0;
+  bottom: 10px;
+  text-align: center;
+  color: white;
+  font-size: 0.9rem;
 }
 
 footer p {
-  font-size: 1em;
+  margin: 0;
 }
