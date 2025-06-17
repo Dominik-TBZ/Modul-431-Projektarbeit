@@ -1,13 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fake Fragen</title>
-    <link rel="stylesheet" href="fakefragen.css"/>
+    <title>Fake Frage</title>
+    <link rel="stylesheet" href="fakefragen.css">
     <script src="fakefragen.js" defer></script>
 </head>
 <body>
-    <h1>Fake Fragen</h1>
+<div class="game-container">
+    <div id="player-count">
+        <h2>Gib die Anzahl der Spieler ein:</h2>
+        <input type="number" id="numPlayers" min="1" placeholder="Anzahl der Spieler">
+        <button onclick="askPlayerNames()">Weiter</button>
+    </div>
+
+    <div id="player-names" style="display:none;">
+        <h2>Gib die Namen der Spieler ein:</h2>
+        <div id="name-inputs"></div>
+        <button onclick="askQuestions()">Frage stellen</button>
+    </div>
+
+    <div id="questions" style="display:none;">
+        <h2>Gebe deine Antwort an:</h2>
+        <h3 id="current-player">Spieler 1</h3>
+        <p id="question-text"></p>
+        <input type="text" id="answer" placeholder="Antwort eingeben">
+        <button onclick="submitAnswer()">Antwort absenden</button>
+    </div>
+
+    <div id="results" style="display:none;">
+        <h2>Ergebnisse:</h2>
+        <div id="answers-list"></div>
+    </div>
+    </div>
 </body>
 </html>
