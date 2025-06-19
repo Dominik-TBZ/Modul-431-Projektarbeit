@@ -34,6 +34,8 @@
 - **Kein JSON ohne Server:**  
   Aufgrund von Einschränkungen bei lokalem Zugriff (z. B. ohne Python-Server) können keine `.json`-Dateien direkt im Browser eingelesen werden. Stattdessen werden notwendige Daten direkt im JavaScript als Array hinterlegt.
 
+  Len wie hesch du das gmacht, du hesch ja überall .json dateie? Bi mier crashed aber die Spieli
+
 - **Design:**  
   Ein durchgängiges Design sorgt für Wiedererkennung. Alle Spiele verwenden:
   - dasselbe Hintergrundbild,
@@ -45,6 +47,7 @@
 ## 🎮 Spiel-Dokumentation
 
 ### 🕵️ Spion
+**Author:** Dominik
 
 - **Spielidee:**  
   Die Spieler erhalten geheime Rollen. Einer ist der Spion, alle anderen kennen den Ort. Der Spion muss herausfinden, wo sich die anderen befinden – ohne aufzufliegen.
@@ -59,24 +62,28 @@
 ---
 
 ### ❓ Wer bin Ich
+**Author:** Len
 
 *(Noch nicht dokumentiert)*
 
 ---
 
 ### 🎭 Fake Fragen
+**Author:** Len
 
 *(Noch nicht dokumentiert)*
 
 ---
 
 ### 👾 Imposter
+**Author:** Len
 
 *(Noch nicht dokumentiert)*
 
 ---
 
 ### 🔢 Zahlensalat
+**Author:** Dominik
 
 *(Noch nicht dokumentiert)*
 
