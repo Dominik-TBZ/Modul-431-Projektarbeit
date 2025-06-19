@@ -31,10 +31,8 @@
 
 ## ⚙️ Generelles
 
-- **Kein JSON ohne Server:**  
-  Aufgrund von Einschränkungen bei lokalem Zugriff (z. B. ohne Python-Server) können keine `.json`-Dateien direkt im Browser eingelesen werden. Stattdessen werden notwendige Daten direkt im JavaScript als Array hinterlegt.
-
-  Len wie hesch du das gmacht, du hesch ja überall .json dateie? Bi mier crashed aber die Spieli
+- **JSON verwenden:**  
+  - vorgegebene Daten werden in einem Json File gespeichert und in die JavaScript Datei eingelesen.
 
 - **Design:**  
   Ein durchgängiges Design sorgt für Wiedererkennung. Alle Spiele verwenden:

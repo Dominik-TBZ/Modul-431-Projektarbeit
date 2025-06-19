@@ -1,15 +1,4 @@
-const orte = [
-  "Strand",
-  "Bahnhof",
-  "Flughafen",
-  "Restaurant",
-  "Theater",
-  "Hotel",
-  "Bank",
-  "Bibliothek",
-  "Krankenhaus",
-  "Supermarkt"
-];
+let orte = [];
 
 let spielerZahl = 0;
 let spioneZahl = 0;
@@ -18,6 +7,17 @@ let aktuelleRolle = 0;
 let zufallsOrt = "";
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Orte aus JSON laden
+  fetch('orte.json')
+    .then(response => response.json())
+    .then(data => {
+      orte = data.orte;
+    })
+    .catch(err => {
+      console.error("Fehler beim Laden der Orte:", err);
+      alert("Fehler beim Laden der Orte. Bitte versuche es erneut.");
+    });
+
   document.getElementById('setup-form').addEventListener('submit', setupSpiel);
   document.getElementById('rolleAnzeigen').addEventListener('click', rolleZeigen);
   document.getElementById('naechsterSpieler').addEventListener('click', naechsterSpieler);
@@ -30,6 +30,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function setupSpiel(e) {
   e.preventDefault();
+
+  if (orte.length === 0) {
+    alert("Orte sind noch nicht geladen, bitte warte einen Moment und versuche es erneut.");
+    return;
+  }
+
   spielerZahl = parseInt(document.getElementById('spielerAnzahl').value);
   spioneZahl = parseInt(document.getElementById('spionAnzahl').value);
 
