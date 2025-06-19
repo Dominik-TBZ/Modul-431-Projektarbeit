@@ -1,13 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spion</title>
-    <link rel="stylesheet" href="spion.css"/>
+    <link rel="stylesheet" href="spion.css" />
     <script src="spion.js" defer></script>
 </head>
 <body>
-    <h1>Spion</h1>
+    <header>
+        <h1>🎭 Spion</h1>
+    </header>
+
+    <main id="game">
+
+        <!-- Spiel Setup -->
+        <form id="setup-form">
+            <label>👥 Spieleranzahl:
+                <input type="number" id="spielerAnzahl" min="3" max="20" required>
+            </label>
+            <br><br>
+            <label>🕵️ Anzahl Spione:
+                <input type="number" id="spionAnzahl" min="1" max="5" required>
+            </label>
+            <br><br>
+            <button type="submit" class="link-box">🎲 Spiel starten</button>
+        </form>
+
+        <!-- Rollenanzeige -->
+        <!-- Rollenanzeige -->
+        <div id="rollenAnzeige" style="display: none;">
+            <h2 id="spielerTitel"></h2>
+            <button id="rolleAnzeigen" class="link-box">🔍 Rolle aufdecken</button>
+            <p id="rolleText" class="rolleText"></p>
+            <button id="naechsterSpieler" class="link-box" style="display:none;">➡️ Nächster Spieler</button>
+        </div>
+
+        <button id="spielBeenden" style="display:none;">Spiel auflösen</button>
+
+        <!-- Endanzeige Ort + Spieler -->
+        <div id="spielStart" style="display:none;">
+            <h2 style="color: white;">🗺️ Das Spiel beginnt jetzt!</h2>
+            <p style="color: white;">Fragt euch gegenseitig, um den Spion zu entlarven. Viel Spaß!</p>
+            <h3 style="color:white; margin-top: 20px;">🔒 Mögliche Orte:</h3>
+            <ul id="orteListe"></ul>
+        </div>
+
+    </main>
+
+    <footer><p>&copy; 2025 Spion Spiel</p></footer>
 </body>
 </html>
