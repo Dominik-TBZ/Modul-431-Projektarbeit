@@ -41,6 +41,9 @@
   - dasselbe Hintergrundbild,
   - die gleiche Schriftart,
   - ähnliche UI-Elemente (Buttons, Farben, Layout).
+  - 
+- **Copyright:**  
+  - Jede HTML Website hat zu jederzeit das Copyright "play-tbz" im fotter sichtbar.
 
 ---
 
