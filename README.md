@@ -1,7 +1,9 @@
 # Projekt Auftrag Modul 431
 
 **Thema:** Website mit Minispielen 
+
 **Umfang:** mindestens 3 Spiele vollständig funktionstüchtig
+
 **Entwickler:** Len Grunder, Andres Kalt, Dominik Willisch
 
 ## Struktur
