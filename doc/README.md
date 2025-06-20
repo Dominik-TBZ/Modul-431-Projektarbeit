@@ -40,6 +40,9 @@
   - die gleiche Schriftart,
   - ähnliche UI-Elemente (Buttons, Farben, Layout).
   - 
+- **Design:**  
+  - Bei jedem Spiel gibt es oben rechts eine Spielanleitung, welche man zu jeder Zeit aufklappen (und wieder einklappen) kann.
+
 - **Copyright:**  
   - Jede HTML Website hat zu jederzeit das Copyright "play-tbz" im fotter sichtbar.
 
