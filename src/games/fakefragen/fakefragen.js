@@ -1,116 +1,108 @@
+/* fakefragen.js – komplett ersetzt */
+
 let numPlayers;
-let playerNames = [];
-let playerAnswers = [];
-let currentPlayer = 0;
-let questions = [];
+let numFakePlayers;
+let playerNames     = [];
+let playerAnswers   = [];
+let currentPlayer   = 0;
+
+let questions       = [];
 let selectedQuestions = [];
-let impostorIndex = -1;
-let randomIndex = -1;  // Stellt sicher, dass der zufällige Index der Frage erhalten wird
-let questionsLoaded = false; // Flag, um zu überprüfen, ob die Fragen geladen wurden
+let fakeIndices     = new Set();   // mehrere Fake-Spieler möglich
+let randomPairIndex = -1;
+let questionsLoaded = false;
 
 function loadQuestions() {
-    // Hier holen wir die Fragen aus der JSON-Datei
     fetch('questions.json')
-        .then(response => response.json())
+        .then(res => res.json())
         .then(data => {
             questions = data;
-            questionsLoaded = true; // Fragen wurden erfolgreich geladen
+            questionsLoaded = true;
         })
-        .catch(error => {
-            console.error("Fehler beim Laden der Fragen:", error);
-        });
+        .catch(err => alert('Fehler beim Laden der Fragen.'));
 }
 
 function askPlayerNames() {
-    if (!questionsLoaded) {
-        alert("Die Fragen werden noch geladen. Bitte versuche es später erneut.");
-        return;  // Verhindert das Ausführen, bevor die Fragen geladen sind
-    }
+    if (!questionsLoaded) { alert('Fragen werden noch geladen.'); return; }
 
-    numPlayers = parseInt(document.getElementById("numPlayers").value);
-    if (isNaN(numPlayers) || numPlayers < 1) {
-        alert("Bitte gib eine gültige Anzahl an Spielern ein.");
-        return;
-    }
-    document.getElementById("player-count").style.display = "none";
-    let nameInputs = document.getElementById("name-inputs");
+    numPlayers     = parseInt(document.getElementById('numPlayers').value);
+    numFakePlayers = parseInt(document.getElementById('numFakePlayers').value);
+
+    if (isNaN(numPlayers)     || numPlayers < 1)                 { alert('Ungültige Spieleranzahl'); return; }
+    if (isNaN(numFakePlayers) || numFakePlayers < 1 ||
+        numFakePlayers > numPlayers)                             { alert('Ungültige Fake-Frage-Anzahl'); return; }
+
+    document.getElementById('player-count').style.display = 'none';
+
+    const nameInputs = document.getElementById('name-inputs');
+    nameInputs.innerHTML = '';
     for (let i = 0; i < numPlayers; i++) {
-        nameInputs.innerHTML += `
-            <label for="name${i}">Spieler ${i + 1} Name:</label>
-            <input type="text" id="name${i}" placeholder="Name">
-            <br>
-        `;
+        nameInputs.innerHTML += `<label for="name${i}">Spieler ${i + 1} Name:</label>
+                                 <input type="text" id="name${i}" placeholder="Name"><br>`;
     }
-    document.getElementById("player-names").style.display = "block";
+    document.getElementById('player-names').style.display = 'block';
 }
 
 function askQuestions() {
-    if (!questionsLoaded) {
-        alert("Die Fragen sind noch nicht vollständig geladen.");
-        return;
-    }
-
+    // Namen prüfen
+    playerNames = [];
     for (let i = 0; i < numPlayers; i++) {
-        playerNames.push(document.getElementById(`name${i}`).value);
-    }
-    if (playerNames.some(name => name.trim() === "")) {
-        alert("Bitte gib für alle Spieler einen Namen ein.");
-        return;
+        const name = document.getElementById(`name${i}`).value.trim();
+        if (!name) { alert('Bitte alle Namen ausfüllen'); return; }
+        playerNames.push(name);
     }
 
-    // Zufällig eine Frage auswählen und Impostor-Frage zuweisen
-    randomIndex = Math.floor(Math.random() * questions.length);
-    let selectedQuestionPair = questions[randomIndex];
+    // Frage-Paar zufällig wählen
+    randomPairIndex        = Math.floor(Math.random() * questions.length);
+    const pair             = questions[randomPairIndex];
+    selectedQuestions      = Array(numPlayers).fill(pair.normal);
 
-    // Alle Spieler bekommen die normale Frage, außer ein zufälliger Spieler, der die Impostor-Frage erhält
-    selectedQuestions = Array(numPlayers).fill(selectedQuestionPair.normal);
-    impostorIndex = Math.floor(Math.random() * numPlayers);  // Zufällig einen Spieler für die Impostor-Frage auswählen
-    selectedQuestions[impostorIndex] = selectedQuestionPair.impostor;
+    // Fake-Spieler festlegen
+    fakeIndices = new Set();
+    while (fakeIndices.size < numFakePlayers) {
+        fakeIndices.add(Math.floor(Math.random() * numPlayers));
+    }
+    fakeIndices.forEach(i => selectedQuestions[i] = pair.impostor);
 
-    document.getElementById("player-names").style.display = "none";
-    document.getElementById("questions").style.display = "block";
+    // UI wechseln
+    document.getElementById('player-names').style.display = 'none';
+    document.getElementById('questions').style.display    = 'block';
 
-    let question = selectedQuestions[currentPlayer];
-    document.getElementById("question-text").textContent = question;
-    document.getElementById("current-player").textContent = `Spieler ${currentPlayer + 1}: ${playerNames[currentPlayer]}`;
+    updateQuestionScreen();
+}
+
+function updateQuestionScreen() {
+    document.getElementById('answer').value           = '';
+    document.getElementById('question-text').textContent = selectedQuestions[currentPlayer];
+    document.getElementById('current-player').textContent = `Spieler ${currentPlayer + 1}: ${playerNames[currentPlayer]}`;
 }
 
 function submitAnswer() {
-    let answer = document.getElementById("answer").value;
-    if (answer.trim() === "") {
-        alert("Bitte gib eine Antwort ein.");
-        return;
-    }
+    const ans = document.getElementById('answer').value.trim();
+    if (!ans) { alert('Bitte Antwort eingeben'); return; }
 
-    playerAnswers.push(answer);
+    playerAnswers.push(ans);
     currentPlayer++;
 
     if (currentPlayer < numPlayers) {
-        document.getElementById("answer").value = "";
-        document.getElementById("question-text").textContent = selectedQuestions[currentPlayer];
-        document.getElementById("current-player").textContent = `Spieler ${currentPlayer + 1}: ${playerNames[currentPlayer]}`;
+        updateQuestionScreen();
     } else {
-        showResults();
+        // Alle Antworten erfasst – Ergebnis-Button zeigen
+        document.getElementById('questions').style.display         = 'none';
+        document.getElementById('show-results-container').style.display = 'block';
     }
 }
 
 function showResults() {
-    document.getElementById("questions").style.display = "none";
-    document.getElementById("results").style.display = "block";
-    let resultsDiv = document.getElementById("answers-list");
+    document.getElementById('show-results-container').style.display = 'none';
+    document.getElementById('results').style.display               = 'block';
 
-    let question = questions[randomIndex].normal;
-    resultsDiv.innerHTML += `<h3>Die Frage: "${question}"</h3>`;
-    
+    const list      = document.getElementById('answers-list');
+    list.innerHTML  = `<h3>Die Frage: \"${questions[randomPairIndex].normal}\"</h3>`;
+
     for (let i = 0; i < numPlayers; i++) {
-        resultsDiv.innerHTML += `<p>${playerNames[i]}: ${playerAnswers[i]}</p>`;
+        list.innerHTML += `<p>${playerNames[i]}: ${playerAnswers[i]}</p>`;
     }
-
-    
-    
 }
 
-
-window.onload = function() {
-    loadQuestions(); 
-};
+window.onload = loadQuestions;

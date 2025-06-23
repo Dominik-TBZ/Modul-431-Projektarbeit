@@ -4,35 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fake Frage</title>
+    <!-- CSS-Link wie gewünscht -->
     <link rel="stylesheet" href="fakefragen.css">
+    <!-- Externes JavaScript wird getrennt geladen -->
     <script src="fakefragen.js" defer></script>
 </head>
 <body>
 <div class="game-container">
+    <!-- Schritt 1: Spieler- & Fake-Frage-Anzahl -->
     <div id="player-count">
         <h2>Gib die Anzahl der Spieler ein:</h2>
         <input type="number" id="numPlayers" min="1" placeholder="Anzahl der Spieler">
+
+        <h2>Wie viele Spieler Impostors?</h2>
+        <input type="number" id="numFakePlayers" min="1" placeholder="Anzahl Fake‑Frage‑Spieler">
+
         <button onclick="askPlayerNames()">Weiter</button>
     </div>
 
+    <!-- Schritt 2: Namen eingeben -->
     <div id="player-names" style="display:none;">
         <h2>Gib die Namen der Spieler ein:</h2>
         <div id="name-inputs"></div>
         <button onclick="askQuestions()">Frage stellen</button>
     </div>
 
+    <!-- Schritt 3: Frage & Antwort -->
     <div id="questions" style="display:none;">
-        <h2>Gebe deine Antwort an:</h2>
+        <h2>Gib deine Antwort ein:</h2>
         <h3 id="current-player">Spieler 1</h3>
         <p id="question-text"></p>
         <input type="text" id="answer" placeholder="Antwort eingeben">
         <button onclick="submitAnswer()">Antwort absenden</button>
     </div>
 
+    <!-- Schritt 4: Button zum Anzeigen der Ergebnisse -->
+    <div id="show-results-container" style="display:none;">
+        <button onclick="showResults()">Ergebnisse anzeigen</button>
+    </div>
+
+    <!-- Ergebnisse -->
     <div id="results" style="display:none;">
         <h2>Ergebnisse:</h2>
         <div id="answers-list"></div>
     </div>
-    </div>
+</div>
 </body>
 </html>
