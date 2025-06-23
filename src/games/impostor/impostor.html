@@ -1,13 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Impostor</title>
-    <link rel="stylesheet" href="impostor.css"/>
-  <script src="impostor.js" defer></script>
+    <title>Impostor Zuteilung</title>
+    <link rel="stylesheet" href="impostor.css">
+    <script src="impostor.js" defer></script>
 </head>
 <body>
-    <h1>Impostor</h1>
+    <div class="game-container">
+        <!-- Spieleranzahl -->
+        <div id="player-count">
+            <h2>Gib die Anzahl der Spieler ein:</h2>
+            <input type="number" id="numPlayers" min="1" placeholder="Anzahl der Spieler">
+            <button onclick="askPlayerNames()">Weiter</button>
+        </div>
+
+        <!-- Spielernamen Eingabe -->
+        <div id="player-names" style="display:none;">
+            <h2>Gib die Namen der Spieler ein:</h2>
+            <div id="name-inputs"></div>
+            <button onclick="startGame()">Namen bestätigen</button>
+        </div>
+
+        <!-- Blocker zwischen Namenseingabe und dem ersten Spieler -->
+        <div id="name-blocker" style="display:none;">
+            <p>Der erste Spieler ist: <span id="first-player-name"></span>. Warte auf das Spiel...</p>
+        </div>
+
+        <!-- Wortzuweisung -->
+        <div id="words" style="display:none;">
+            <h2 id="word-title">Dein Wort:</h2>
+            <h3 id="current-player">Spieler 1</h3>
+            <p id="word-text"></p>
+            <button onclick="submitAnswer()">Weiter</button>
+        </div>
+
+        <!-- Button zum Anzeigen der Ergebnisse -->
+        <div id="show-results-container" style="display:none;">
+            <button onclick="showResults()">Ergebnisse anzeigen</button>
+        </div>
+
+        <!-- Ergebnisse -->
+        <div id="results" style="display:none;">
+            <h2>Ergebnisse:</h2>
+            <div id="answers-list"></div>
+        </div>
+    </div>
 </body>
 </html>

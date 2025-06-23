@@ -1,0 +1,115 @@
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url('../../img/background.jpeg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+header h1 {
+  color:  white;
+  font-size: 5rem;
+  font-weight: bold;
+}
+
+main {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+form label {
+  color: white;
+  font-size: 1.5rem;
+}
+
+input {
+  font-size: 1.2rem;
+  padding: 5px;
+  margin-left: 10px;
+  border-radius: 5px;
+  border: none;
+}
+
+.link-box {
+  display: inline-block;
+  background-color: #0D47A1;
+  color: white;
+  padding: 20px;
+  margin: 15px auto;
+  text-align: center;
+  font-size: 1.5rem;
+  text-decoration: none;
+  border-radius: 10px;
+  width: auto;
+  transition: background-color 0.3s ease, transform 0.2s;
+  cursor: pointer;
+}
+
+.link-box:hover {
+  background-color: #1976D2;
+  transform: scale(1.05);
+}
+
+.rolleText {
+  color: white;
+  font-size: 1.8rem;
+  margin: 20px;
+}
+
+#spielerTitel {
+  color: white;
+  font-size: 2rem;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+#spielBeenden {
+  background-color: #d32f2f; /* kräftiges Rot */
+  color: white;
+  padding: 15px 30px;
+  font-size: 1.6rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(211, 47, 47, 0.5);
+  transition: background-color 0.3s ease, transform 0.2s, box-shadow 0.3s ease;
+  margin-top: 20px;
+}
+
+ul#orteListe {
+  list-style: none;
+  padding: 0;
+  color: white;
+  font-size: 1.2rem;
+  columns: 2;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+#zurueckButton {
+  margin-top: 15px;
+}
+
+footer {
+  position: absolute;
+  bottom: 10px;
+  text-align: center;
+  color: white;
+  font-size: 0.9rem;
+}
+
+footer p {
+  margin: 0;
+}

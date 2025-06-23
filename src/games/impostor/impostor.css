@@ -1,0 +1,83 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('../../img/background.jpeg') no-repeat center center fixed; 
+    background-size: cover;  
+    height: 100vh;  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+}
+
+.game-container {
+    background-color: rgba(13, 71, 161, 0.85);  
+    color: white;
+    width: 80%;
+    max-width: 600px;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+    padding: 30px;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+h1 {
+    font-size: 3em;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Eingabefelder größer machen */
+input[type="text"], input[type="number"] {
+    font-size: 1.2em;
+    padding: 12px;
+    width: 80%;
+    max-width: 400px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: 2px solid #ccc;
+}
+
+input[type="text"]:focus, input[type="number"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Blocker-Style */
+#name-blocker {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 2em;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

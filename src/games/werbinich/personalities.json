@@ -1,0 +1,44 @@
+{
+  "personalities": [
+    {
+      "name": "Leonardo DiCaprio",
+      "image": "leonardo.jpg"
+    },
+    {
+      "name": "Beyoncé",
+      "image": "beyonce.jpg"
+    },
+    {
+      "name": "Brad Pitt",
+      "image": "brad_pitt.jpg"
+    },
+    {
+      "name": "Taylor Swift",
+      "image": "taylor_swift.jpg"
+    },
+    {
+      "name": "Will Smith",
+      "image": "will_smith.jpg"
+    },
+    {
+      "name": "Emma Watson",
+      "image": "emma_watson.jpg"
+    },
+    {
+      "name": "Johnny Depp",
+      "image": "johnny_depp.jpg"
+    },
+    {
+      "name": "Rihanna",
+      "image": "rihanna.jpg"
+    },
+    {
+      "name": "Dwayne Johnson",
+      "image": "dwayne_johnson.jpg"
+    },
+    {
+      "name": "Adele",
+      "image": "adele.jpg"
+    }
+  ]
+}
