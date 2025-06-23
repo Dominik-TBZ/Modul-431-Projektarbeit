@@ -6,6 +6,9 @@ let spielerListe = [];
 let aktuelleRolle = 0;
 let zufallsOrt = "";
 
+// Interne Variable für Spionenanzahl, wenn Zufallsbutton genutzt wird
+let spionenAnzahlIntern = null;
+
 document.addEventListener("DOMContentLoaded", () => {
   // Orte aus JSON laden
   fetch('orte.json')
@@ -26,7 +29,34 @@ document.addEventListener("DOMContentLoaded", () => {
   btnBeenden.classList.add('link-box'); // Styling wie zurück-Button
   btnBeenden.style.display = 'none';
   btnBeenden.addEventListener('click', spielBeenden);
+
+  document.getElementById('zufallSpioneBtn').addEventListener('click', zufallsSpioneSetzen);
 });
+
+function zufallsSpioneSetzen() {
+  const spielerInput = document.getElementById('spielerAnzahl');
+  const spionInput = document.getElementById('spionAnzahl');
+
+  const spielerWert = parseInt(spielerInput.value);
+
+  if (isNaN(spielerWert) || spielerWert < 2) {
+    alert("Bitte gib zuerst eine gültige Spieleranzahl (mind. 2) ein.");
+    return;
+  }
+
+  const maxSpione = spielerWert - 1;
+  spionenAnzahlIntern = Math.floor(Math.random() * maxSpione) + 1;
+
+  // Deaktivieren & Type setzen sofort
+  spionInput.disabled = true;
+  spionInput.type = 'text';
+  spionInput.classList.add('disabled-input');
+
+  // Wert mit kleinem Timeout setzen, damit der Browser das rendert
+  setTimeout(() => {
+    spionInput.value = 'x';
+  }, 10);
+}
 
 function setupSpiel(e) {
   e.preventDefault();
@@ -37,12 +67,44 @@ function setupSpiel(e) {
   }
 
   spielerZahl = parseInt(document.getElementById('spielerAnzahl').value);
-  spioneZahl = parseInt(document.getElementById('spionAnzahl').value);
 
-  if (spioneZahl >= spielerZahl) {
+  const spionInput = document.getElementById('spionAnzahl');
+  let spionWert;
+
+  if (spionInput.value === 'x') {
+    // Zufallsbutton wurde genutzt, interne Zahl verwenden
+    if (spionenAnzahlIntern === null) {
+      alert("Bitte benutze den Zufallsbutton erneut oder gib eine Zahl ein.");
+      return;
+    }
+    spionWert = spionenAnzahlIntern;
+  } else {
+    spionWert = parseInt(spionInput.value);
+
+    if (isNaN(spionWert)) {
+      alert("Bitte gib eine gültige Anzahl an Spionen ein.");
+      return;
+    }
+
+    spionenAnzahlIntern = null; // manuell eingegeben, interne Zahl zurücksetzen
+  }
+
+  if (spionWert < 1) {
+    alert("Die Anzahl der Spione muss mindestens 1 sein.");
+    return;
+  }
+
+  if (spionWert >= spielerZahl) {
     alert("Es müssen weniger Spione als Spieler sein.");
     return;
   }
+
+  spioneZahl = spionWert;
+
+  // Falls vorher per Zufallsbutton deaktiviert, wieder aktivieren
+  spionInput.type = 'number';
+  spionInput.disabled = false;
+  spionInput.classList.remove('disabled-input');
 
   zufallsOrt = orte[Math.floor(Math.random() * orte.length)];
 
