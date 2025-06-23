@@ -5,14 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Impostor Zuteilung</title>
     <link rel="stylesheet" href="impostor.css">
-    <script src="impostor.js" defer></script>
+    <script src="impostor.js"></script>
 </head>
 <body>
     <div class="game-container">
-        <!-- Spieleranzahl -->
+        <!-- Spieler- & Impostor-Anzahl -->
         <div id="player-count">
             <h2>Gib die Anzahl der Spieler ein:</h2>
             <input type="number" id="numPlayers" min="1" placeholder="Anzahl der Spieler">
+
+            <h2>Gib die Anzahl der Impostor ein:</h2>
+            <input type="number" id="numImpostors" min="1" placeholder="Anzahl der Impostor">
+
             <button onclick="askPlayerNames()">Weiter</button>
         </div>
 
@@ -23,17 +27,11 @@
             <button onclick="startGame()">Namen bestätigen</button>
         </div>
 
-        <!-- Blocker zwischen Namenseingabe und dem ersten Spieler -->
-        <div id="name-blocker" style="display:none;">
-            <p>Der erste Spieler ist: <span id="first-player-name"></span>. Warte auf das Spiel...</p>
-        </div>
-
-        <!-- Wortzuweisung -->
+        <!-- Wortzuweisung pro Spieler -->
         <div id="words" style="display:none;">
-            <h2 id="word-title">Dein Wort:</h2>
-            <h3 id="current-player">Spieler 1</h3>
-            <p id="word-text"></p>
-            <button onclick="submitAnswer()">Weiter</button>
+            <h3 id="current-player"></h3>
+            <p id="word-text" style="display:none;"></p>
+            <button id="toggle-word-btn" onclick="toggleWord()">Wort anzeigen</button>
         </div>
 
         <!-- Button zum Anzeigen der Ergebnisse -->
@@ -47,5 +45,8 @@
             <div id="answers-list"></div>
         </div>
     </div>
+
+    <!-- Externes JavaScript -->
+    
 </body>
 </html>
