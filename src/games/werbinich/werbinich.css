@@ -1,51 +1,88 @@
+/*
+ * Style für "Wer bin ich?" – angelehnt an den Look von "Impostor"
+ */
+
+/* ===== Grundlayout ===== */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    background: url('../../img/background.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
-    background: url('../../img/background.jpeg') no-repeat center center fixed; 
-    background-size: cover;
+    font-size: 1.2em; /* Einheitliche Basisschriftgröße */
 }
 
 .game-container {
-    background-color: #0d47a1;  /* Blaues Feld */
-    color: white;
-    width: 95%;  /* Breite auf 95% setzen, um mehr Platz zu schaffen */
-    max-width: 1500px;  /* Maximale Breite auf 1500px setzen */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    background-color: rgba(13, 71, 161, 0.85); /* transparenteres Blau wie bei Impostor */
+    color: #fff;
+    width: 90%;
+    max-width: 1000px;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
     text-align: center;
 }
 
 h2 {
-    font-size: 2.5em;
+    font-size: 3em;
+    margin: 0 0 20px 0;
+    font-weight: bold;
 }
 
-#player-selection {
-    display: flex;
-    justify-content: space-between;  /* Gleichmäßige Verteilung zwischen den Spielern */
-    gap: 40px; /* Abstand zwischen den beiden Spielern */
-    margin-top: 30px;
+h3 {
+    font-size: 1.8em;
+    margin: 10px 0 20px 0;
 }
 
-.player-selection {
-    width: 48%; /* Jede Spalte nimmt 48% der Breite ein */
+/* ===== Buttons und Inputs ===== */
+button {
+    margin-top: 20px;
+    padding: 10px 24px;
+    font-size: 1.2em;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
+button:hover {
+    background-color: #0056b3;
+}
+
+input[type="text"],
+input[type="number"] {
+    font-size: 1.2em;
+    padding: 12px;
+    width: 80%;
+    max-width: 400px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: 2px solid #ccc;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* ===== Grid für Spieler & Celebrities ===== */
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);  /* 5x5 Grid */
-    gap: 20px;  /* Abstand zwischen den Bildern */
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 20px;
     margin-top: 20px;
 }
 
 .grid-item {
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    aspect-ratio: 1 / 1; /* quadratisch */
     background-color: #eee;
     border-radius: 10px;
     display: flex;
@@ -53,24 +90,55 @@ h2 {
     align-items: center;
     position: relative;
     cursor: pointer;
+    overflow: hidden;
 }
 
 .grid-item img {
-    width: 90%;  /* Etwas kleinere Bilder, um Platz für den Abstand zu schaffen */
-    height: 90%;
-    border-radius: 5px;
-    transition: 0.3s;  /* Für den Ausgrau-Effekt */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.3s;
 }
 
 .grid-item.disabled img {
-    filter: grayscale(100%);  /* Graut das Bild aus */
+    filter: grayscale(100%);
 }
 
-#selection-info-player1, #selection-info-player2 {
+/* Beschriftung unter jedem Bild */
+.grid-caption {
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    font-size: 0.8em;
+    padding: 2px 4px;
+    border-radius: 0 0 10px 10px;
+}
+
+/* ===== Info‑Texte ===== */
+#selection-info-player1,
+#selection-info-player2 {
     margin-top: 20px;
 }
 
-#selection-info-player1 p, #selection-info-player2 p {
+#selection-info-player1 p,
+#selection-info-player2 p {
     font-size: 1.2em;
     color: #f0f0f0;
+}
+
+/* Label über dem Eingabefeld und zentriert */
+#step-player-count label {
+    display: block;        /* eigene Zeile */
+    margin-bottom: 10px;   /* Abstand zur Textbox */
+    text-align: center;    /* mittig */
+}
+
+
+#step-player-count {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
