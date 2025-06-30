@@ -1,13 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Zahlensalat</title>
-    <link rel="stylesheet" href="zahlensalat.css"/>
-    <script src="zahlensalat.js" defer></script>
+    <link rel="stylesheet" href="zahlensalat.css" />
 </head>
 <body>
-    <h1>Zahlensalat</h1>
+    <div class="game-container">
+        <h2>Zahlensalat</h2>
+
+        <!-- Schritt 1: Spieleranzahl -->
+        <div id="step-player-count">
+            <label for="player-count" class="block-label">Wie viele Personen spielen mit?</label>
+            <input type="number" id="player-count" min="2" max="10" value="2" />
+            <button id="btn-player-count-next">Weiter</button>
+        </div>
+
+        <!-- Schritt 2: Namen -->
+        <div id="step-player-names" style="display:none;">
+            <h3>Namen eingeben</h3>
+            <form id="name-form"></form>
+            <button id="btn-names-next">Spiel starten</button>
+        </div>
+
+    <!-- Schritt 3: Spielerzug -->
+    <div id="step-player-turn" style="display:none;">
+       <h3 id="player-name-heading"></h3>          <!-- ❶ Spielername -->
+        <h3 id="category-heading"></h3>
+
+        <p id="rating-heading" class="rating-text" style="display:none;"></p>
+        <button id="btn-show-rating">Rating anzeigen</button>  <!-- ❷ Button -->
+
+        <input type="text" id="player-word" placeholder="Gib deinen Begriff ein" />
+        <button id="btn-submit-word">Abschicken</button>
+    </div>
+
+
+        <!-- Zwischenstand -->
+        <div id="step-progress" style="display:none;">
+            <h3>Zwischenstand</h3>
+            <div id="progress-container" class="grid-container"></div>
+            <button id="btn-continue">Weiter</button>
+        </div>
+
+        <!-- Schritt 4: Ergebnisse -->
+        <div id="step-results" style="display:none;">
+            <h3>Ergebnisse</h3>
+            <div id="results-container" class="grid-container"></div>
+            <button id="btn-restart" style="display:none;">Neues Spiel</button>
+        </div>
+    </div>
+
+    <script src="zahlensalat.js"></script>
 </body>
 </html>
