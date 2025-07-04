@@ -14,7 +14,7 @@ Dies ist das Projektportfolio zur Modul-431-Projektarbeit. Es enthält die Websi
 
 Die vollständige Projektdokumentation steht als PDF zur Verfügung:
 
-📥 [Zur PDF-Dokumentation](https://github.com/Dominik-TBZ/Modul-431-Projektarbeit/doc/Dokumentation.pdf)
+📥 [Zur PDF-Dokumentation](https://github.com/Dominik-TBZ/Modul-431-Projektarbeit/doc/Projektarbeit_Len-Dominik-Andres 1.pdf)
 
 ---
 
