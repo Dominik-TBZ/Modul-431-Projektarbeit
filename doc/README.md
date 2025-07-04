@@ -39,9 +39,10 @@
   - dasselbe Hintergrundbild,
   - die gleiche Schriftart,
   - ähnliche UI-Elemente (Buttons, Farben, Layout).
-  - 
-- **Design:**  
+
+- **Navigaion:**  
   - Bei jedem Spiel gibt es oben rechts eine Spielanleitung, welche man zu jeder Zeit aufklappen (und wieder einklappen) kann.
+  - Bei jedem Spiel kommt man durch den zurück Button zur Startseite.
 
 - **Copyright:**  
   - Jede HTML Website hat zu jederzeit das Copyright "play-tbz" im fotter sichtbar.
@@ -87,7 +88,7 @@
 ---
 
 ### 🔢 Zahlensalat
-**Author:** Dominik
+**Author:** Len
 
 *(Noch nicht dokumentiert)*
 
