@@ -1,32 +1,36 @@
-/*
- * Style für "Wer bin ich?" – angelehnt an den Look von "Impostor"
- */
-
-/* ===== Grundlayout ===== */
+/* Body styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background: url('../../img/background.jpeg') no-repeat center center fixed;
     background-size: cover;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.2em; /* Einheitliche Basisschriftgröße */
+    font-size: 1.2em;
 }
 
+/* Game container */
 .game-container {
-    background-color: rgba(13, 71, 161, 0.85); /* transparenteres Blau wie bei Impostor */
-    color: #fff;
+    background-color: rgba(13, 71, 161, 0.85);
+    color: white;
     width: 90%;
-    max-width: 1000px;
-    padding: 30px;
+    max-width: 800px;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     border-radius: 15px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+    padding: 40px;
     text-align: center;
+    margin: 20px auto;
 }
 
+/* Headings */
 h2 {
     font-size: 3em;
     margin: 0 0 20px 0;
@@ -38,23 +42,24 @@ h3 {
     margin: 10px 0 20px 0;
 }
 
-/* ===== Buttons und Inputs ===== */
+/* Buttons */
 button {
     margin-top: 20px;
-    padding: 10px 24px;
+    padding: 10px 20px;
     font-size: 1.2em;
     background-color: #007bff;
-    color: #fff;
+    color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
     background-color: #0056b3;
 }
 
+/* Input fields */
 input[type="text"],
 input[type="number"] {
     font-size: 1.2em;
@@ -72,7 +77,7 @@ input[type="number"]:focus {
     outline: none;
 }
 
-/* ===== Grid für Spieler & Celebrities ===== */
+/* Grid layout */
 .grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
@@ -82,7 +87,7 @@ input[type="number"]:focus {
 
 .grid-item {
     width: 100%;
-    aspect-ratio: 1 / 1; /* quadratisch */
+    aspect-ratio: 1 / 1;
     background-color: #eee;
     border-radius: 10px;
     display: flex;
@@ -104,7 +109,7 @@ input[type="number"]:focus {
     filter: grayscale(100%);
 }
 
-/* Beschriftung unter jedem Bild */
+/* Caption */
 .grid-caption {
     position: absolute;
     bottom: 4px;
@@ -117,7 +122,7 @@ input[type="number"]:focus {
     border-radius: 0 0 10px 10px;
 }
 
-/* ===== Info‑Texte ===== */
+/* Info text */
 #selection-info-player1,
 #selection-info-player2 {
     margin-top: 20px;
@@ -129,16 +134,65 @@ input[type="number"]:focus {
     color: #f0f0f0;
 }
 
-/* Label über dem Eingabefeld und zentriert */
-#step-player-count label {
-    display: block;        /* eigene Zeile */
-    margin-bottom: 10px;   /* Abstand zur Textbox */
-    text-align: center;    /* mittig */
-}
-
-
-#step-player-count {
+/* Form elements */
+#step-player-count,
+#step-player-names,
+#step-show-player {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 20px;
+}
+
+.block-label {
+    display: block;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 1.3em;
+}
+
+#name-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+#name-form label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Help button */
+.help-btn{
+  position:fixed; top:18px; right:18px;
+  width:48px; height:48px; border:none; border-radius:50%;
+  background:rgba(13,71,161,.92); color:#fff; font-size:1.8rem;
+  display:flex; justify-content:center; align-items:center;
+  cursor:pointer; z-index:1000;
+}
+.help-btn:hover{ filter:brightness(1.15); }
+
+/* Help modal */
+.help-modal{
+  position:fixed; inset:0; display:none;
+  justify-content:center; align-items:center;
+  background:rgba(0,0,0,.6); z-index:999;
+}
+
+.help-content{
+  position:relative; max-width:640px; width:80%;
+  padding:24px 32px; background:#fff; color:#000;
+  border-radius:12px; font-size:1.1rem; line-height:1.5;
+}
+
+.help-close{
+  position:absolute; top:12px; right:18px;
+  font-size:1.6rem; cursor:pointer; user-select:none;
 }

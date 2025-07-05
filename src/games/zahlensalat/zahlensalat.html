@@ -7,44 +7,55 @@
     <link rel="stylesheet" href="zahlensalat.css" />
 </head>
 <body>
+    <!-- Help button and modal -->
+<button id="helpBtn" class="help-btn" aria-label="Spielanleitung">📑</button>
+
+<div id="helpModal" class="help-modal">
+  <div class="help-content">
+    <span id="helpClose" class="help-close">&times;</span>
+    <h2>Spielanleitung</h2>
+    <p id="helpText"></p>
+  </div>
+</div>
+
     <div class="game-container">
         <h2>Zahlensalat</h2>
 
-        <!-- Schritt 1: Spieleranzahl -->
+        <!-- Player count -->
         <div id="step-player-count">
             <label for="player-count" class="block-label">Wie viele Personen spielen mit?</label>
             <input type="number" id="player-count" min="2" max="10" value="2" />
             <button id="btn-player-count-next">Weiter</button>
         </div>
 
-        <!-- Schritt 2: Namen -->
+        <!-- Name input -->
         <div id="step-player-names" style="display:none;">
             <h3>Namen eingeben</h3>
             <form id="name-form"></form>
             <button id="btn-names-next">Spiel starten</button>
         </div>
 
-    <!-- Schritt 3: Spielerzug -->
+    <!-- Player turn -->
     <div id="step-player-turn" style="display:none;">
-       <h3 id="player-name-heading"></h3>          <!-- ❶ Spielername -->
+       <h3 id="player-name-heading"></h3>
         <h3 id="category-heading"></h3>
 
         <p id="rating-heading" class="rating-text" style="display:none;"></p>
-        <button id="btn-show-rating">Rating anzeigen</button>  <!-- ❷ Button -->
+        <button id="btn-show-rating">Rating anzeigen</button>
 
         <input type="text" id="player-word" placeholder="Gib deinen Begriff ein" />
         <button id="btn-submit-word">Abschicken</button>
     </div>
 
 
-        <!-- Zwischenstand -->
+        <!-- Progress -->
         <div id="step-progress" style="display:none;">
             <h3>Zwischenstand</h3>
             <div id="progress-container" class="grid-container"></div>
             <button id="btn-continue">Weiter</button>
         </div>
 
-        <!-- Schritt 4: Ergebnisse -->
+        <!-- Results -->
         <div id="step-results" style="display:none;">
             <h3>Ergebnisse</h3>
             <div id="results-container" class="grid-container"></div>

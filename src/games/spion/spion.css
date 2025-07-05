@@ -1,3 +1,4 @@
+/* Body styles */
 body {
   font-family: 'Arial', sans-serif;
   margin: 0;
@@ -11,6 +12,7 @@ body {
   background-size: cover;
 }
 
+/* Header */
 header {
   text-align: center;
   margin-bottom: 20px;
@@ -22,17 +24,26 @@ header h1 {
   font-weight: bold;
 }
 
+/* Main container */
 main {
-  max-width: 600px;
+  background-color: rgba(13, 71, 161, 0.85);
+  color: white;
   width: 90%;
-  background-color: rgba(13, 71, 161, 0.85); /* Blau, weniger durchsichtig */
-  padding: 30px 40px;
-  border-radius: 20px;
-  box-sizing: border-box;
+  max-width: 800px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+  padding: 40px;
   text-align: center;
+  margin: 20px auto;
+  box-sizing: border-box;
 }
 
-/* Label + Input Spieleranzahl in einer Zeile */
+/* Form elements */
 #setup-form > label[for="spielerAnzahl"] {
   color: white;
   font-size: 1.5rem;
@@ -53,7 +64,7 @@ main {
   color: black;
 }
 
-/* Input-row: Spione Label, Input und Button in einer Linie */
+/* Input row */
 .input-row {
   display: flex;
   align-items: center;
@@ -86,7 +97,7 @@ main {
   color: black;
 }
 
-/* Würfel-Button, gleich hoch und ausgerichtet mit Input */
+/* Random button */
 .link-box.emoji-only {
   all: unset;
   box-sizing: border-box;
@@ -95,43 +106,60 @@ main {
   justify-content: center;
   width: 80px;
   height: 38px;
-  font-size: 1.5rem;
-  background-color: #0D47A1;
+  font-size: 1.2em;
+  background-color: #007bff;
   color: white;
-  border-radius: 10px;
+  border-radius: 8px;
   cursor: pointer;
   user-select: none;
-  transition: background-color 0.3s ease, transform 0.2s;
+  transition: background-color 0.3s ease;
   margin: 0;
   vertical-align: middle;
 }
 
 .link-box.emoji-only:hover {
-  background-color: #1976D2;
-  transform: scale(1.05);
+  background-color: #0056b3;
 }
 
-/* Start-Button */
+/* Buttons */
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1.2em;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Action buttons */
 .link-box {
   display: inline-block;
-  background-color: #0D47A1;
+  background-color: #007bff;
   color: white;
-  padding: 20px;
+  padding: 10px 20px;
   margin: 15px auto;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.2em;
   text-decoration: none;
-  border-radius: 10px;
+  border-radius: 8px;
   width: auto;
-  transition: background-color 0.3s ease, transform 0.2s;
+  transition: background-color 0.3s ease;
   cursor: pointer;
+  border: none;
 }
 
 .link-box:hover {
-  background-color: #1976D2;
-  transform: scale(1.05);
+  background-color: #0056b3;
 }
 
+/* Role display */
 .rolleText {
   color: white;
   font-size: 1.8rem;
@@ -145,19 +173,25 @@ main {
   font-weight: bold;
 }
 
+/* End game button */
 #spielBeenden {
-  background-color: #d32f2f; /* kräftiges Rot */
+  background-color: #d32f2f;
   color: white;
-  padding: 15px 30px;
-  font-size: 1.6rem;
+  padding: 10px 20px;
+  font-size: 1.2em;
   border: none;
-  border-radius: 12px;
+  border-radius: 8px;
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(211, 47, 47, 0.5);
-  transition: background-color 0.3s ease, transform 0.2s, box-shadow 0.3s ease;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
   margin-top: 20px;
 }
 
+#spielBeenden:hover {
+  background-color: #b71c1c;
+}
+
+/* Location list */
 ul#orteListe {
   list-style: none;
   padding: 0;
@@ -172,6 +206,7 @@ ul#orteListe {
   margin-top: 15px;
 }
 
+/* Footer */
 footer {
   position: absolute;
   bottom: 10px;
@@ -182,4 +217,32 @@ footer {
 
 footer p {
   margin: 0;
+}
+
+/* Help button */
+.help-btn{
+  position:fixed; top:18px; right:18px;
+  width:48px; height:48px; border:none; border-radius:50%;
+  background:rgba(13,71,161,.92); color:#fff; font-size:1.8rem;
+  display:flex; justify-content:center; align-items:center;
+  cursor:pointer; z-index:1000;
+}
+.help-btn:hover{ filter:brightness(1.15); }
+
+/* Help modal */
+.help-modal{
+  position:fixed; inset:0; display:none;
+  justify-content:center; align-items:center;
+  background:rgba(0,0,0,.6); z-index:999;
+}
+
+.help-content{
+  position:relative; max-width:640px; width:80%;
+  padding:24px 32px; background:#fff; color:#000;
+  border-radius:12px; font-size:1.1rem; line-height:1.5;
+}
+
+.help-close{
+  position:absolute; top:12px; right:18px;
+  font-size:1.6rem; cursor:pointer; user-select:none;
 }

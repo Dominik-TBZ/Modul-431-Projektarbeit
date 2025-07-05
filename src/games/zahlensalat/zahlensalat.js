@@ -1,29 +1,19 @@
-/* =======================================================
- * Zahlensalat – komplette Spiel-Logik
- * =======================================================
- * Features
- * • Spielername wird angezeigt
- * • Rating ist zunächst versteckt und wird per Button gezeigt
- * • Zwischenstand erscheint EINMAL (nach letztem Spieler) als
- *   Ausgangslage, dann direkt zu den Ergebnissen
- * ======================================================= */
-
-/* ---------- Globale Variablen ---------- */
-let categories        = [];           // Kategorien­liste aus JSON
-let players           = [];           // { name, rating, word }
-let commonRating      = 0;            // Rating für alle außer Impostor
-let impostorRating    = 0;            // Abweichendes Rating
-let impostorIndex     = -1;           // Index des Impostors im Array
+/* Variables */
+let categories        = [];
+let players           = [];
+let commonRating      = 0;
+let impostorRating    = 0;
+let impostorIndex     = -1;
 let currentPlayerIndex = 0;
 let wordsSubmitted     = 0;
 
-/* ---------- Kategorien laden ---------- */
+/* Load categories */
 fetch('categories.json')
   .then(r => r.json())
   .then(d => categories = d.categories)
   .catch(err => console.error('Fehler beim Laden der Kategorien:', err));
 
-/* ---------- Schritt 1: Spieleranzahl ---------- */
+/* Player count */
 document.getElementById('btn-player-count-next')
         .addEventListener('click', () => {
   const count = parseInt(document.getElementById('player-count').value, 10);
@@ -35,7 +25,7 @@ document.getElementById('btn-player-count-next')
   switchStep('step-player-count', 'step-player-names');
 });
 
-/* ---------- Schritt 2: Namen eingeben ---------- */
+/* Name input */
 document.getElementById('btn-names-next')
         .addEventListener('click', () => {
   const inputs = document.querySelectorAll('.player-name-input');
@@ -52,7 +42,7 @@ document.getElementById('btn-names-next')
   switchStep('step-player-names', 'step-player-turn');
 });
 
-/* ---------- Schritt 3: Spieler gibt Begriff ab ---------- */
+/* Submit word */
 document.getElementById('btn-submit-word')
         .addEventListener('click', () => {
   const inp  = document.getElementById('player-word');
@@ -67,37 +57,32 @@ document.getElementById('btn-submit-word')
   inp.value = '';
 
   if (wordsSubmitted >= players.length) {
-    // Alle fertig → einmaliger Zwischenstand
     buildProgressGrid();
     switchStep('step-player-turn', 'step-progress');
   } else {
-    // Nächster Spieler, KEIN Zwischenstand
     currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
     showCurrentPlayer();
   }
 });
 
-/* ---------- Zwischenstand: Weiter ---------- */
+/* Continue button */
 document.getElementById('btn-continue')
         .addEventListener('click', () => {
-  prepareResults();    // direkt zu den Ergebnissen
+  prepareResults();
 });
 
-/* ---------- Button „Rating anzeigen“ ---------- */
+/* Show rating button */
 const btnShowRating = document.getElementById('btn-show-rating');
 btnShowRating.addEventListener('click', () => {
   document.getElementById('rating-heading').style.display = 'block';
   btnShowRating.style.display = 'none';
 });
 
-/* ---------- Neustart ---------- */
+/* Restart button */
 document.getElementById('btn-restart')
         .addEventListener('click', () => location.reload());
 
-/* =======================================================
- * Hilfsfunktionen
- * ======================================================= */
-
+/* Build name inputs */
 function buildNameInputs(count) {
   const form = document.getElementById('name-form');
   form.innerHTML = '';
@@ -113,19 +98,17 @@ function buildNameInputs(count) {
   }
 }
 
+/* Start game */
 function startGame() {
-  /* Kategorie wählen */
   const category = categories[Math.floor(Math.random() * categories.length)];
   document.getElementById('category-heading').textContent = `Kategorie: ${category}`;
-
-  /* Ratings bestimmen */
   commonRating = randomRating();
   do { impostorRating = randomRating(); } while (impostorRating === commonRating);
   impostorIndex = Math.floor(Math.random() * players.length);
 
   players.forEach((p, i) => {
     p.rating = (i === impostorIndex) ? impostorRating : commonRating;
-    p.word   = '';  // Platzhalter
+    p.word   = '';
   });
 
   currentPlayerIndex = 0;
@@ -135,20 +118,18 @@ function startGame() {
 
 const randomRating = () => Math.floor(Math.random() * 10) + 1;
 
+/* Show current player */
 function showCurrentPlayer() {
   const p = players[currentPlayerIndex];
-
-  /* Spielername & Rating vorbereiten */
   document.getElementById('player-name-heading').textContent = `Du bist: ${p.name}`;
   document.getElementById('rating-heading').textContent       = `Dein Rating: ${p.rating}`;
-
-  /* Rating verstecken, Button anzeigen */
   document.getElementById('rating-heading').style.display = 'none';
   btnShowRating.style.display                              = 'inline-block';
 
   document.getElementById('player-word').focus();
 }
 
+/* Build progress grid */
 function buildProgressGrid() {
   const c = document.getElementById('progress-container');
   c.innerHTML = '';
@@ -156,12 +137,13 @@ function buildProgressGrid() {
     c.insertAdjacentHTML('beforeend', `
       <div class="grid-item">
         <div class="player-name">${p.name}</div>
-        <div>Begriff: ${p.word || '—'}</div>
+        <div>Begriff: ${p.word || '-'}</div>
       </div>
     `);
   });
 }
 
+/* Prepare results */
 function prepareResults() {
   const c = document.getElementById('results-container');
   c.innerHTML = '';
@@ -182,8 +164,21 @@ function prepareResults() {
   switchStep('step-progress', 'step-results');
 }
 
-/* Utility: Schrittwechsel */
+/* Switch step */
 function switchStep(hideId, showId) {
   document.getElementById(hideId).style.display = 'none';
   document.getElementById(showId).style.display = 'block';
 }
+
+/* Help modal */
+document.addEventListener('DOMContentLoaded', () => {
+  const btn   = document.getElementById('helpBtn');
+  const modal = document.getElementById('helpModal');
+  const close = document.getElementById('helpClose');
+
+  if(btn && modal && close){
+    btn.addEventListener('click', () => modal.style.display = 'flex');
+    close.addEventListener('click', () => modal.style.display = 'none');
+    modal.addEventListener('click', e => { if(e.target === modal) modal.style.display = 'none'; });
+  }
+});

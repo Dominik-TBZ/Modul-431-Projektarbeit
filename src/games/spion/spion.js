@@ -1,3 +1,4 @@
+/* Variables */
 let orte = [];
 
 let spielerZahl = 0;
@@ -6,11 +7,10 @@ let spielerListe = [];
 let aktuelleRolle = 0;
 let zufallsOrt = "";
 
-// Interne Variable für Spionenanzahl, wenn Zufallsbutton genutzt wird
 let spionenAnzahlIntern = null;
 
+/* Initialize game */
 document.addEventListener("DOMContentLoaded", () => {
-  // Orte aus JSON laden
   fetch('orte.json')
     .then(response => response.json())
     .then(data => {
@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById('zufallSpioneBtn').addEventListener('click', zufallsSpioneSetzen);
 });
 
+/* Set random spy count */
 function zufallsSpioneSetzen() {
   const spielerInput = document.getElementById('spielerAnzahl');
   const spionInput = document.getElementById('spionAnzahl');
@@ -47,17 +48,16 @@ function zufallsSpioneSetzen() {
   const maxSpione = spielerWert - 1;
   spionenAnzahlIntern = Math.floor(Math.random() * maxSpione) + 1;
 
-  // Deaktivieren & Type setzen sofort
   spionInput.disabled = true;
   spionInput.type = 'text';
   spionInput.classList.add('disabled-input');
 
-  // Wert mit kleinem Timeout setzen, damit der Browser das rendert
   setTimeout(() => {
     spionInput.value = 'x';
   }, 10);
 }
 
+/* Setup game */
 function setupSpiel(e) {
   e.preventDefault();
 
@@ -72,7 +72,6 @@ function setupSpiel(e) {
   let spionWert;
 
   if (spionInput.value === 'x') {
-    // Zufallsbutton wurde genutzt, interne Zahl verwenden
     if (spionenAnzahlIntern === null) {
       alert("Bitte benutze den Zufallsbutton erneut oder gib eine Zahl ein.");
       return;
@@ -86,7 +85,7 @@ function setupSpiel(e) {
       return;
     }
 
-    spionenAnzahlIntern = null; // manuell eingegeben, interne Zahl zurücksetzen
+    spionenAnzahlIntern = null;
   }
 
   if (spionWert < 1) {
@@ -101,14 +100,12 @@ function setupSpiel(e) {
 
   spioneZahl = spionWert;
 
-  // Falls vorher per Zufallsbutton deaktiviert, wieder aktivieren
   spionInput.type = 'number';
   spionInput.disabled = false;
   spionInput.classList.remove('disabled-input');
 
   zufallsOrt = orte[Math.floor(Math.random() * orte.length)];
 
-  // Rollen mischen
   const rollen = [];
   for (let i = 0; i < spioneZahl; i++) rollen.push("Spion");
   for (let i = 0; i < spielerZahl - spioneZahl; i++) rollen.push(zufallsOrt);
@@ -127,6 +124,7 @@ function setupSpiel(e) {
   zeigeSpielerTitel();
 }
 
+/* Show player title */
 function zeigeSpielerTitel() {
   document.getElementById('spielerTitel').textContent = `Spieler ${aktuelleRolle + 1}, bitte Rolle aufdecken`;
   const rolleTextEl = document.getElementById('rolleText');
@@ -134,12 +132,13 @@ function zeigeSpielerTitel() {
   rolleTextEl.style.color = 'white';
 
   document.getElementById('naechsterSpieler').textContent =
-    aktuelleRolle === spielerListe.length - 1 ? '🎬 Spiel starten' : '➡️ Nächster Spieler';
+    aktuelleRolle === spielerListe.length - 1 ? 'Spiel starten' : 'Nächster Spieler';
 
   document.getElementById('naechsterSpieler').style.display = 'none';
   document.getElementById('rolleAnzeigen').style.display = 'inline-block';
 }
 
+/* Show role */
 function rolleZeigen() {
   const rolle = spielerListe[aktuelleRolle];
   const text = rolle === "Spion" ? "🕵️ Du bist der SPION!" : `📍 Der Ort ist: ${rolle}`;
@@ -151,6 +150,7 @@ function rolleZeigen() {
   document.getElementById('naechsterSpieler').style.display = 'inline-block';
 }
 
+/* Next player */
 function naechsterSpieler() {
   aktuelleRolle++;
   if (aktuelleRolle >= spielerListe.length) {
@@ -161,6 +161,7 @@ function naechsterSpieler() {
   }
 }
 
+/* End game */
 function spielBeenden() {
   const btnBeenden = document.getElementById('spielBeenden');
   btnBeenden.style.display = 'none';
@@ -168,35 +169,45 @@ function spielBeenden() {
   const container = document.getElementById('spielStart');
   container.innerHTML = '';
 
-  // Ort anzeigen
   const ortHeading = document.createElement('h2');
-  ortHeading.textContent = `📍 Der Ort ist: ${zufallsOrt}`;
+  ortHeading.textContent = `Der Ort ist: ${zufallsOrt}`;
   ortHeading.style.color = 'white';
   container.appendChild(ortHeading);
 
-  // Rollenliste
   const ul = document.createElement('ul');
   ul.style.color = 'white';
 
   for (let i = 0; i < spielerListe.length; i++) {
     const li = document.createElement('li');
     li.textContent = spielerListe[i] === "Spion"
-      ? `Spieler ${i + 1}: 🕵️ Spion`
-      : `Spieler ${i + 1}: 📍 Ort`;
+      ? `Spieler ${i + 1}: Spion`
+      : `Spieler ${i + 1}: Ort`;
     ul.appendChild(li);
   }
 
   container.appendChild(ul);
 
-  // Zurück-Button am Ende
   const zurueckBtn = document.createElement('button');
-  zurueckBtn.textContent = '⬅️ Zurück zur Startseite';
+  zurueckBtn.textContent = 'Zurück zur Startseite';
   zurueckBtn.className = 'link-box';
   zurueckBtn.style.marginTop = '30px';
   zurueckBtn.addEventListener('click', () => {
-    window.location.href = '../../index.html'; // ggf. Pfad anpassen
+    window.location.href = '../../index.html';
   });
 
   container.appendChild(zurueckBtn);
   container.style.display = 'block';
 }
+
+/* Help modal */
+document.addEventListener('DOMContentLoaded', () => {
+  const btn   = document.getElementById('helpBtn');
+  const modal = document.getElementById('helpModal');
+  const close = document.getElementById('helpClose');
+
+  if(btn && modal && close){
+    btn.addEventListener('click', () => modal.style.display = 'flex');
+    close.addEventListener('click', () => modal.style.display = 'none');
+    modal.addEventListener('click', e => { if(e.target === modal) modal.style.display = 'none'; });
+  }
+});

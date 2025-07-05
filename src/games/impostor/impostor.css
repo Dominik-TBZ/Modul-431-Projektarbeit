@@ -1,32 +1,37 @@
+/* Body styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background: url('../../img/background.jpeg') no-repeat center center fixed; 
     background-size: cover;  
-    height: 100vh;  
+    min-height: 100vh;  
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1.2em;
 }
 
+/* Game container */
 .game-container {
     background-color: rgba(13, 71, 161, 0.85);  
     color: white;
-    width: 80%;
-    max-width: 600px;
-    height: 70%;
+    width: 90%;
+    max-width: 800px;
+    min-height: 400px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     border-radius: 15px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
-    padding: 30px;
+    padding: 40px;
     text-align: center;
     font-size: 1.2em;
+    margin: 20px auto;
 }
 
+/* Headings */
 h1 {
     font-size: 3em;
     margin: 0;
@@ -34,6 +39,7 @@ h1 {
     font-weight: bold;
 }
 
+/* Buttons */
 button {
     margin-top: 20px;
     padding: 10px 20px;
@@ -49,7 +55,7 @@ button:hover {
     background-color: #0056b3;
 }
 
-/* Eingabefelder größer machen */
+/* Input fields */
 input[type="text"], input[type="number"] {
     font-size: 1.2em;
     padding: 12px;
@@ -65,7 +71,7 @@ input[type="text"]:focus, input[type="number"]:focus {
     outline: none;
 }
 
-/* Blocker-Style */
+/* Name blocker */
 #name-blocker {
     display: none;
     position: fixed;
@@ -80,4 +86,62 @@ input[type="text"]:focus, input[type="number"]:focus {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/* Help button */
+.help-btn{
+  position:fixed; top:18px; right:18px;
+  width:48px; height:48px; border:none; border-radius:50%;
+  background:rgba(13,71,161,.92); color:#fff; font-size:1.8rem;
+  display:flex; justify-content:center; align-items:center;
+  cursor:pointer; z-index:1000;
+}
+.help-btn:hover{ filter:brightness(1.15); }
+
+/* Step containers */
+#player-count,
+#player-names,
+#words,
+#show-results-container,
+#results {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+#name-inputs {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+#name-inputs label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Help modal */
+.help-modal{
+  position:fixed; inset:0; display:none;
+  justify-content:center; align-items:center;
+  background:rgba(0,0,0,.6); z-index:999;
+}
+
+.help-content{
+  position:relative; max-width:640px; width:80%;
+  padding:24px 32px; background:#fff; color:#000;
+  border-radius:12px; font-size:1.1rem; line-height:1.5;
+}
+
+.help-close{
+  position:absolute; top:12px; right:18px;
+  font-size:1.6rem; cursor:pointer; user-select:none;
 }

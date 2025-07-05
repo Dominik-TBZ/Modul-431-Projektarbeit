@@ -8,8 +8,19 @@
     <script src="impostor.js"></script>
 </head>
 <body>
+    <!-- Help button and modal -->
+<button id="helpBtn" class="help-btn" aria-label="Spielanleitung">📑</button>
+
+<div id="helpModal" class="help-modal">
+  <div class="help-content">
+    <span id="helpClose" class="help-close">&times;</span>
+    <h2>Spielanleitung</h2>
+    <p id="helpText"></p>
+  </div>
+</div>
+
     <div class="game-container">
-        <!-- Spieler- & Impostor-Anzahl -->
+        <!-- Player setup -->
         <div id="player-count">
             <h2>Gib die Anzahl der Spieler ein:</h2>
             <input type="number" id="numPlayers" min="1" placeholder="Anzahl der Spieler">
@@ -20,33 +31,31 @@
             <button onclick="askPlayerNames()">Weiter</button>
         </div>
 
-        <!-- Spielernamen Eingabe -->
+        <!-- Name input -->
         <div id="player-names" style="display:none;">
             <h2>Gib die Namen der Spieler ein:</h2>
             <div id="name-inputs"></div>
             <button onclick="startGame()">Namen bestätigen</button>
         </div>
 
-        <!-- Wortzuweisung pro Spieler -->
+        <!-- Word assignment -->
         <div id="words" style="display:none;">
             <h3 id="current-player"></h3>
             <p id="word-text" style="display:none;"></p>
             <button id="toggle-word-btn" onclick="toggleWord()">Wort anzeigen</button>
         </div>
 
-        <!-- Button zum Anzeigen der Ergebnisse -->
+        <!-- Show results button -->
         <div id="show-results-container" style="display:none;">
             <button onclick="showResults()">Ergebnisse anzeigen</button>
         </div>
 
-        <!-- Ergebnisse -->
+        <!-- Results -->
         <div id="results" style="display:none;">
             <h2>Ergebnisse:</h2>
             <div id="answers-list"></div>
         </div>
     </div>
 
-    <!-- Externes JavaScript -->
-    
 </body>
 </html>

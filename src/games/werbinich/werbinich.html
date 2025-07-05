@@ -4,28 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wer bin ich?</title>
-    <!-- Bestehendes Styling beibehalten -->
     <link rel="stylesheet" href="werbinich.css">
 </head>
 <body>
+    <!-- Help button and modal -->
+<button id="helpBtn" class="help-btn" aria-label="Spielanleitung">📑</button>
+
+<div id="helpModal" class="help-modal">
+  <div class="help-content">
+    <span id="helpClose" class="help-close">&times;</span>
+    <h2>Spielanleitung</h2>
+    <p id="helpText"></p>
+  </div>
+</div>
+
     <div class="game-container">
         <h2>Wer bin ich?</h2>
 
-        <!-- Schritt 1: Spieleranzahl wählen -->
+        <!-- Player count -->
         <div id="step-player-count">
-            <label for="player-count">Wie viele Personen spielen mit?</label>
+            <label for="player-count" class="block-label">Wie viele Personen spielen mit?</label>
             <input type="number" id="player-count" min="2" max="10" value="2">
             <button id="btn-player-count-next">Weiter</button>
         </div>
 
-        <!-- Schritt 2: Namen eingeben -->
+        <!-- Name input -->
         <div id="step-player-names" style="display:none;">
             <h3>Namen eingeben</h3>
             <form id="name-form"></form>
             <button id="btn-names-next">Spiel starten</button>
         </div>
 
-        <!-- Schritt 3: Spielansicht -->
+        <!-- Game view -->
         <div id="step-show-player" style="display:none;">
             <h3 id="current-player-heading"></h3>
             <div id="others-container" class="grid-container"></div>
@@ -33,7 +43,6 @@
         </div>
     </div>
 
-    <!-- Externes JavaScript einbinden -->
     <script src="werbinich.js"></script>
 </body>
 </html>

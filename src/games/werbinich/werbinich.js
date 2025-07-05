@@ -1,22 +1,10 @@
-// =============================================
-// Wer bin ich? – Spiel-Logik (externes Skript)
-// Features:
-// • Zentrierung der Personenbilder
-// • Buttons „Personen anzeigen“ je Spieler
-// • Nach Abschluss aller Runden: Button „Ergebnisse anzeigen“
-// =============================================
-
-// -----------------------------
-// Globale Variablen
-// -----------------------------
+/* Variables */
 let celebrities = [];
-let players = []; // { name: string, celeb: { name, image } }
+let players = [];
 let currentPlayerIndex = 0;
-let turnsCompleted = 0; // zählt, wie viele Spieler ihren Screen gesehen haben
+let turnsCompleted = 0;
 
-// -----------------------------
-// Persönlichkeiten laden
-// -----------------------------
+/* Load personalities */
 fetch('personalities.json')
     .then((r) => r.json())
     .then((data) => {
@@ -24,9 +12,7 @@ fetch('personalities.json')
     })
     .catch((err) => console.error('Fehler beim Laden der Persönlichkeiten:', err));
 
-// -----------------------------
-// Event-Handler für Setup-Schritte
-// -----------------------------
+/* Event handlers */
 document.getElementById('btn-player-count-next').addEventListener('click', () => {
     const count = parseInt(document.getElementById('player-count').value, 10);
     if (isNaN(count) || count < 2) {
@@ -57,9 +43,7 @@ document.getElementById('btn-names-next').addEventListener('click', () => {
 
 document.getElementById('btn-next-player').addEventListener('click', nextPlayer);
 
-// -----------------------------
-// Hilfsfunktionen – Setup
-// -----------------------------
+/* Build name inputs */
 function buildNameInputs(count) {
     const form = document.getElementById('name-form');
     form.innerHTML = '';
@@ -80,23 +64,21 @@ function buildNameInputs(count) {
     }
 }
 
+/* Assign celebrities */
 function assignCelebrities() {
-    // Mische Kopie der Persönlichkeiten und nimm so viele wie benötigt
     const shuffledCelebs = [...celebrities].sort(() => 0.5 - Math.random());
 
     players.forEach((player, idx) => {
-        player.celeb = shuffledCelebs[idx % shuffledCelebs.length]; // falls mehr Spieler als Celebs
+        player.celeb = shuffledCelebs[idx % shuffledCelebs.length];
     });
 }
 
-// -----------------------------
-// Hauptanzeige pro Spieler
-// -----------------------------
+/* Build others grid */
 function buildOthersGrid(container) {
     container.innerHTML = '';
 
     players.forEach((p, idx) => {
-        if (idx === currentPlayerIndex) return; // eigenen Eintrag auslassen
+        if (idx === currentPlayerIndex) return;
 
         const div = document.createElement('div');
         div.className = 'grid-item';
@@ -108,15 +90,14 @@ function buildOthersGrid(container) {
     });
 }
 
+/* Show current player */
 function showCurrentPlayer() {
     const player = players[currentPlayerIndex];
     document.getElementById('current-player-heading').textContent = `${player.name}!`;
 
     const container = document.getElementById('others-container');
-    container.style.display = 'none'; // erst ausblenden
-    container.style.justifyContent = 'center'; // Zentrierung der Items
-
-    // Button zum Anzeigen der Personen (pro Spieler neu sichtbar machen)
+    container.style.display = 'none';
+    container.style.justifyContent = 'center';
     let showBtn = document.getElementById('btn-show-persons');
     if (!showBtn) {
         showBtn = document.createElement('button');
@@ -133,26 +114,19 @@ function showCurrentPlayer() {
     };
 }
 
-// -----------------------------
-// Weiter zum nächsten Spieler oder Ergebnisse
-// -----------------------------
+/* Next player */
 function nextPlayer() {
     turnsCompleted++;
 
-    // Alle Spieler hatten ihren Zug → Ergebnisse-Phase
     if (turnsCompleted >= players.length) {
         showResultsIntro();
         return;
     }
-
-    // Ansonsten nächster Spieler
     currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
     showCurrentPlayer();
 }
 
-// -----------------------------
-// Ergebnisse
-// -----------------------------
+/* Build results grid */
 function buildResultsGrid(container) {
     container.innerHTML = '';
     players.forEach((p) => {
@@ -166,21 +140,19 @@ function buildResultsGrid(container) {
     });
 }
 
+/* Show results intro */
 function showResultsIntro() {
-    // Überschrift anpassen
     document.getElementById('current-player-heading').textContent = 'Ergebnisse';
 
     const container = document.getElementById('others-container');
     container.style.display = 'none';
 
-    // vorhandene Buttons ausblenden
     const nextBtn = document.getElementById('btn-next-player');
     if (nextBtn) nextBtn.style.display = 'none';
 
     const showPersonsBtn = document.getElementById('btn-show-persons');
     if (showPersonsBtn) showPersonsBtn.style.display = 'none';
 
-    // Button „Ergebnisse anzeigen“
     let resBtn = document.getElementById('btn-show-results');
     if (!resBtn) {
         resBtn = document.createElement('button');
@@ -198,10 +170,21 @@ function showResultsIntro() {
     };
 }
 
-// -----------------------------
-// Anzeige-Wechsel (Setup‑Schritte)
-// -----------------------------
+/* Switch step */
 function switchStep(hideId, showId) {
     document.getElementById(hideId).style.display = 'none';
     document.getElementById(showId).style.display = 'block';
 }
+
+/* Help modal */
+document.addEventListener('DOMContentLoaded', () => {
+  const btn   = document.getElementById('helpBtn');
+  const modal = document.getElementById('helpModal');
+  const close = document.getElementById('helpClose');
+
+  if(btn && modal && close){
+    btn.addEventListener('click', () => modal.style.display = 'flex');
+    close.addEventListener('click', () => modal.style.display = 'none');
+    modal.addEventListener('click', e => { if(e.target === modal) modal.style.display = 'none'; });
+  }
+});

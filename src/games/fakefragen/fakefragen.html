@@ -4,14 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fake Frage</title>
-    <!-- CSS-Link wie gewünscht -->
     <link rel="stylesheet" href="fakefragen.css">
-    <!-- Externes JavaScript wird getrennt geladen -->
     <script src="fakefragen.js" defer></script>
 </head>
 <body>
+    <button id="helpBtn" class="help-btn" aria-label="Spielanleitung">📑</button>
+
+<div id="helpModal" class="help-modal">
+  <div class="help-content">
+    <span id="helpClose" class="help-close">&times;</span>
+    <h2>Spielanleitung</h2>
+    <p id="helpText"></p>
+  </div>
+</div>
 <div class="game-container">
-    <!-- Schritt 1: Spieler- & Fake-Frage-Anzahl -->
+    <!-- Player setup -->
     <div id="player-count">
         <h2>Gib die Anzahl der Spieler ein:</h2>
         <input type="number" id="numPlayers" min="1" placeholder="Anzahl der Spieler">
@@ -22,14 +29,14 @@
         <button onclick="askPlayerNames()">Weiter</button>
     </div>
 
-    <!-- Schritt 2: Namen eingeben -->
+    <!-- Name input -->
     <div id="player-names" style="display:none;">
         <h2>Gib die Namen der Spieler ein:</h2>
         <div id="name-inputs"></div>
         <button onclick="askQuestions()">Frage stellen</button>
     </div>
 
-    <!-- Schritt 3: Frage & Antwort -->
+    <!-- Question and answer -->
     <div id="questions" style="display:none;">
         <h2>Gib deine Antwort ein:</h2>
         <h3 id="current-player">Spieler 1</h3>
@@ -38,12 +45,12 @@
         <button onclick="submitAnswer()">Antwort absenden</button>
     </div>
 
-    <!-- Schritt 4: Button zum Anzeigen der Ergebnisse -->
+    <!-- Show results button -->
     <div id="show-results-container" style="display:none;">
         <button onclick="showResults()">Ergebnisse anzeigen</button>
     </div>
 
-    <!-- Ergebnisse -->
+    <!-- Results -->
     <div id="results" style="display:none;">
         <h2>Ergebnisse:</h2>
         <div id="answers-list"></div>

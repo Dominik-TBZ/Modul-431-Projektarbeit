@@ -1,3 +1,4 @@
+/* Body styles */
 body {
   font-family: 'Arial', sans-serif;
   margin: 0;
@@ -11,6 +12,7 @@ body {
   background-size: cover;
 }
 
+/* Header */
 header {
   text-align: center;
   margin-bottom: 20px;
@@ -22,7 +24,7 @@ header h1 {
   font-weight: bold;
 }
 
-
+/* Game grid layout */
 .top-row {
   display: grid;
   grid-template-columns: repeat(3, 180px); 
@@ -30,7 +32,6 @@ header h1 {
   justify-items: center;
   margin-top: 20px;
 }
-
 
 .bottom-row {
   display: grid;
@@ -43,10 +44,10 @@ header h1 {
   margin-right: auto;
 }
 
-
+/* Game links */
 .link-box {
   display: block;
-  background-color: #0D47A1; 
+  background-color: #007bff; 
   color: white;
   padding: 40px;
   text-align: center;
@@ -59,10 +60,11 @@ header h1 {
 }
 
 .link-box:hover {
-  background-color: #1976D2;
+  background-color: #0056b3;
   transform: scale(1.05);
 }
 
+/* Footer */
 footer {
   position: absolute;
   bottom: 10px;
