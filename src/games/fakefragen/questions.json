@@ -1,14 +1,43 @@
 [
-    {
-        "normal": "Gegen wie viele 15-Jährige würdest du gewinnen?",
-        "impostor": "Wie viele Menschen braucht es, um gegen einen Gorilla zu gewinnen?"
-    },
-    {
-        "normal": "Was ist dein Lieblingstier?",
-        "impostor": "Wie viele Katzen brauchst du, um einen Löwen zu besiegen?"
-    },
-    {
-        "normal": "Was ist dein Lieblingsessen?",
-        "impostor": "Wie viele Pizzen isst du in einem Monat?"
-    }
+  {
+    "normal": "Wie viele Minuten brauchst du, um zur Arbeit zu kommen?",
+    "impostor": "Wie viele Minuten dauert es, um zum Mond zu fliegen?"
+  },
+  {
+    "normal": "Wie viele Länder hast du schon bereist?",
+    "impostor": "Wie viele Außerirdische gibt es im Universum?"
+  },
+  {
+    "normal": "Wie viele Bücher besitzt du in deinem Regal?",
+    "impostor": "Wie viele Kochbücher braucht man, um einen Sternekoch zu werden?"
+  },
+  {
+    "normal": "Wie alt warst du, als du deinen Führerschein gemacht hast?",
+    "impostor": "Wie alt bist du im Hundejahren?"
+  },
+  {
+    "normal": "Welches ist dein Lieblingsfilm?",
+    "impostor": "Welchen Film würdest du für Aliens als Menschenstudie empfehlen?"
+  },
+  {
+    "normal": "Welche Farbe trägst du heute am liebsten?",
+    "impostor": "Welche Farbe hätte die Sonne auf einem fremden Planeten?"
+  },
+  {
+    "normal": "Wie viele Tassen Kaffee trinkst du durchschnittlich pro Tag?",
+    "impostor": "Wie viele Tassen Kaffee braucht eine Roboterarmee, um Energie zu tanken?"
+  },
+  {
+    "normal": "Welches Musikinstrument würdest du gern lernen?",
+    "impostor": "Welches Instrument spielen Meerjungfrauen am liebsten?"
+  },
+  {
+    "normal": "Wie viele Sprachen sprichst du?",
+    "impostor": "Wie viele Dialekte spricht ein Kobold?"
+  },
+  {
+    "normal": "Welches Tier wärst du gern für einen Tag?",
+    "impostor": "Welches mystische Wesen würdest du für eine Woche sein?"
+  }
 ]
+
